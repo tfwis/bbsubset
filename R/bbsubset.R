@@ -1,0 +1,44 @@
+# Choose a subset with balanced base composition
+
+code <- diag(4)
+colnames(code) <- c("A","C","T","G")
+matACTG <- function(s) sapply(strsplit(s,""), function(x) code[,x])
+
+#' min abs(error) with LP (fastest if using commercial solvers)
+#'
+#' @param S barcode set
+#' @param k the size of barcode subset to extract
+#'
+#' @importFrom ROI OP
+#' @importFrom ROI L_constraint
+#' @importFrom ROI ROI_solve
+#' @importFrom slam as.simple_triplet_matrix
+#' @export
+#'
+bbsubset <- function(S,k) {
+  y <- rep(k*1/4,4*nchar(S[1]))
+  N <- length(S)
+  M <- length(y)
+  B <- matACTG(S)
+  A <- rbind(
+    rep(c(1,0),c(N,M)),
+    cbind(B, diag(M)),
+    cbind(B,-diag(M))
+  )
+  #cat("Problem constructed.",fill=TRUE)
+  model <- ROI::OP(
+    # minimize \sum t_i
+    objective = rep(c(0,1),c(N,M)),
+    constraints = ROI::L_constraint(
+      L = slam::as.simple_triplet_matrix(A),
+      dir = rep(c("==",">=","<="),c(1,M,M)),
+      rhs = c(k,y,y),
+      names = c(paste0("x",seq(N)),paste0("t",seq(M)))
+    ),
+    types = rep(c("B","C"),c(N,M))
+  )
+  re <- ROI::ROI_solve(model)
+  re$model  <- model
+  re$subset <- S[as.logical(round(re$solution[seq(N)]))]
+  return(re)
+}

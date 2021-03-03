@@ -2,7 +2,13 @@
 
 code <- diag(4)
 colnames(code) <- c("A","C","T","G")
-matACTG <- function(s) sapply(strsplit(s,""), function(x) code[,x])
+
+#' Transform a barcode set to a binary matrix
+#'
+#' @param S barcode set
+#' @export
+#'
+matACTG <- function(S) sapply(strsplit(S,""), function(x) code[,x])
 
 #' min abs(error) with LP (fastest if using commercial solvers)
 #'
@@ -41,4 +47,15 @@ bbsubset <- function(S,k) {
   re$model  <- model
   re$subset <- S[as.logical(round(re$solution[seq(N)]))]
   return(re)
+}
+
+#' Create a table of nucleotide ratio
+#'
+#' @param s barcode subset extracted by bbsubset
+#' @export
+#'
+basecomp <- function(s) {
+  st <- matrix(rowSums(matACTG(s)),nrow=4,dimnames=list(colnames(code)))
+  colnames(st) <- paste0(seq_len(ncol(st)),"bp")
+  return(st)
 }

@@ -26,17 +26,26 @@ library(ROI)
 library(slam)
 ```
 
-#### Load barcode data
+#### Load sample barcode data
 
 ```{r}
 mdsfile <- "~/R/bbsubset/CS96_d4_n24_sort.csv"
-fullset <- lapply(scan(mdsfile,"char",skip=1),function(x) unlist(strsplit(x,','))[-1])[[1]]
+fullset <- lapply(scan(mdsfile, "char", skip=1),function(x) unlist(strsplit(x,','))[-1])[[1]]
 ```
 
+##### Create bacode set by `DNABarcodes`
+
+```{r}
+barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)
+```
 
 #### The bbsubset part
 
 ```{r}
-set <- bbsubset::bbsubset(fullset,12)
-set$subset
+myset <- bbsubset::bbsubset(barcodes,12)
+myset$subset
+```
+
+```{r}
+basecomp(myset$subset)
 ```

@@ -47,5 +47,5 @@ myset$subset
 ```
 
 ```{r}
-basecomp(myset$subset)
+bbsubset::basecomp(myset$subset)
 ```

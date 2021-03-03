@@ -2,7 +2,7 @@
 % Please edit documentation in R/bbsubset.R
 \name{bbsubset}
 \alias{bbsubset}
-\title{min abs(error) with LP (fastest if using commercial solvers)}
+\title{Extract well-balanced subset minimizing abs(error) with LP}
 \usage{
 bbsubset(S, k)
 }
@@ -12,5 +12,5 @@ bbsubset(S, k)
 \item{k}{the size of barcode subset to extract}
 }
 \description{
-min abs(error) with LP (fastest if using commercial solvers)
+Extract well-balanced subset minimizing abs(error) with LP
 }

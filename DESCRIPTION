@@ -1,17 +1,20 @@
 Package: bbsubset
-Title: What the Package Does (One Line, Title Case)
+Title: Extracting balanced subsets of DNA barcodes
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Takeru",
+           family = "Fujii",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
+           email = "t-fujii@bioreg.kyushu-u.ac.jp",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Description: Giving well-balanced DNA barcode subsets of bases per order.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-Imports: ROI,
-  slam
+Imports: 
+    ROI,
+    slam,
+    gurobi
+URL: https://github.com/tfwis/bbsubset

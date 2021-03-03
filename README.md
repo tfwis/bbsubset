@@ -23,15 +23,6 @@ example.
 
 ``` r
 library(ROI)
-```
-
-    ## ROI: R Optimization Infrastructure
-
-    ## Registered solver plugins: nlminb, lpsolve.
-
-    ## Default solver: auto.
-
-``` r
 library(slam)
 ```
 
@@ -48,10 +39,9 @@ library(slam)
 barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)
 ```
 
-    ## 1) Creating pool ...  of size 1160
-    ## 2) Conway closing...  done
-
 #### The bbsubset part
+
+##### Extract subset
 
 ``` r
 myset <- bbsubset::bbsubset(barcodes,12)
@@ -70,6 +60,8 @@ bbsubset::basecomp(myset$subset)
     ## C   3   3   3   3   3   3
     ## T   3   3   3   3   3   3
     ## G   3   3   3   3   3   3
+
+##### Subset extraction performed by `gurobi`
 
 ``` r
 myset.g <- bbsubset::bbsubset.G(barcodes,12)

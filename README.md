@@ -11,12 +11,6 @@ You can install the alpha version of `bbsubset` with:
 devtools::install_github("tfwis/bbsubset")
 ```
 
-    ## Error in get(genname, envir = envir) : 
-    ##    オブジェクト 'testthat_print' がありません
-
-    ## Skipping install of 'bbsubset' from a github remote, the SHA1 (308776d7) has not changed since last install.
-    ##   Use `force = TRUE` to force installation
-
 ## Example
 
 #### Load packages
@@ -26,15 +20,6 @@ example.
 
 ``` r
 library(ROI)
-```
-
-    ## ROI: R Optimization Infrastructure
-
-    ## Registered solver plugins: nlminb, lpsolve.
-
-    ## Default solver: auto.
-
-``` r
 library(slam)
 ```
 

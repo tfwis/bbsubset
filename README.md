@@ -11,9 +11,6 @@ You can install the alpha version of `bbsubset` with:
 devtools::install_github("tfwis/bbsubset")
 ```
 
-    ## Skipping install of 'bbsubset' from a github remote, the SHA1 (182dc287) has not changed since last install.
-    ##   Use `force = TRUE` to force installation
-
 ## Example
 
 #### Load packages

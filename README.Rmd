@@ -29,8 +29,8 @@ library(slam)
 #### Load sample barcode data
 
 ```{r}
-mdsfile <- "~/R/bbsubset/CS96_d4_n24_sort.csv"
-fullset <- lapply(scan(mdsfile, "char", skip=1),function(x) unlist(strsplit(x,','))[-1])[[1]]
+#mdsfile <- "~/R/bbsubset/CS96_d4_n24_sort.csv"
+#barcodes <- lapply(scan(mdsfile, "char", skip=1),function(x) unlist(strsplit(x,','))[-1])[[1]]
 ```
 
 ##### Create bacode set by `DNABarcodes`
@@ -48,4 +48,9 @@ myset$subset
 
 ```{r}
 bbsubset::basecomp(myset$subset)
+```
+
+```{r}
+myset.g <- bbsubset::bbsubset.G(barcodes,12)
+bbsubset::basecomp(myset.g$subset)
 ```

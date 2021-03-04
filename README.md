@@ -61,7 +61,7 @@ bbsubset::basecomp(myset$subset)
 ##### Subset extraction performed by `gurobi`
 
 ``` r
-myset.g <- bbsubset::bbsubset.g(barcodes,12)
+myset.g <- bbsubset::bbsubset.G(barcodes,12)
 bbsubset::basecomp(myset.g$subset)
 ```
 

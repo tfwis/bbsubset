@@ -77,8 +77,7 @@ bbsubset.G <- function(S,k) {
   model$rhs <- c(k,y,y)
   model$sense <- rep(c("=",">=","<="),c(1,M,M))
   model$vtype <- rep(c("B","C"),c(N,M))
-  params <- list(OutputFlag=0)
-  re <- gurobi::gurobi(model,params)
+  re <- gurobi::gurobi(model)
   re$model  <- model
   re$subset <- S[as.logical(round(re$x[seq(N)]))]
   return(re)

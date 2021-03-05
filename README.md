@@ -23,13 +23,6 @@ library(ROI)
 library(slam)
 ```
 
-#### Load sample barcode data
-
-``` r
-#mdsfile <- "~/R/bbsubset/CS96_d4_n24_sort.csv"
-#barcodes <- lapply(scan(mdsfile, "char", skip=1),function(x) unlist(strsplit(x,','))[-1])[[1]]
-```
-
 ##### Create barcode set by `DNABarcodes`
 
 ``` r

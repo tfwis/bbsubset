@@ -30,7 +30,7 @@ library(slam)
 #barcodes <- lapply(scan(mdsfile, "char", skip=1),function(x) unlist(strsplit(x,','))[-1])[[1]]
 ```
 
-##### Create bacode set by `DNABarcodes`
+##### Create barcode set by `DNABarcodes`
 
 ``` r
 barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)

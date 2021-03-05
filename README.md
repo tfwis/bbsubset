@@ -41,6 +41,7 @@ barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)
 ##### Extract subset
 
 ``` r
+library(ROI.plugin.lpsolve)
 myset <- bbsubset::bbsubset(barcodes,12)
 myset$subset
 ```
@@ -61,8 +62,9 @@ bbsubset::basecomp(myset$subset)
 ##### Subset extraction performed by `gurobi`
 
 ``` r
-myset.g <- bbsubset::bbsubset.G(barcodes,12)
-bbsubset::basecomp(myset.g$subset)
+library(ROI.plugin.gurobi)
+myset <- bbsubset::bbsubset(barcodes,12)
+bbsubset::basecomp(myset$subset)
 ```
 
     ##   1bp 2bp 3bp 4bp 5bp 6bp

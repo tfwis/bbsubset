@@ -4,12 +4,14 @@
 \alias{bbsubset}
 \title{Extract well-balanced subset minimizing abs(error) with LP}
 \usage{
-bbsubset(S, k)
+bbsubset(S, k, ...)
 }
 \arguments{
 \item{S}{barcode set}
 
 \item{k}{the size of barcode subset to extract}
+
+\item{...}{pass to \code{ROI_solve}}
 }
 \description{
 Extract well-balanced subset minimizing abs(error) with LP

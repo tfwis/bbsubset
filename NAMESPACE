@@ -2,10 +2,8 @@
 
 export(basecomp)
 export(bbsubset)
-export(bbsubset.G)
 export(matACTG)
 importFrom(ROI,L_constraint)
 importFrom(ROI,OP)
 importFrom(ROI,ROI_solve)
-importFrom(gurobi,gurobi)
 importFrom(slam,as.simple_triplet_matrix)

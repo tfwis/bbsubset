@@ -14,6 +14,7 @@ matACTG <- function(S) sapply(strsplit(S,""), function(x) code[,x])
 #'
 #' @param S barcode set
 #' @param k the size of barcode subset to extract
+#' @param ... pass to `ROI_solve`
 #'
 #' @importFrom ROI OP
 #' @importFrom ROI L_constraint
@@ -21,7 +22,7 @@ matACTG <- function(S) sapply(strsplit(S,""), function(x) code[,x])
 #' @importFrom slam as.simple_triplet_matrix
 #' @export
 #'
-bbsubset <- function(S,k) {
+bbsubset <- function(S,k,...) {
   y <- rep(k*1/4,4*nchar(S[1]))
   N <- length(S)
   M <- length(y)
@@ -43,43 +44,9 @@ bbsubset <- function(S,k) {
     ),
     types = rep(c("B","C"),c(N,M))
   )
-  re <- ROI::ROI_solve(model)
+  re <- ROI::ROI_solve(model,...)
   re$model  <- model
   re$subset <- S[as.logical(round(re$solution[seq(N)]))]
-  return(re)
-}
-
-#' Extract well-balanced subset minimizing abs(error) with LP performed by gurobi
-#'
-#' @param S barcode set
-#' @param k the size of barcode subset to extract
-#'
-#' @importFrom gurobi gurobi
-#' @importFrom slam as.simple_triplet_matrix
-#' @export
-#'
-bbsubset.G <- function(S,k) {
-  y <- rep(k*1/4,4*nchar(S[1]))
-  N <- length(S)
-  M <- length(y)
-  B <- matACTG(S)
-  A <- rbind(
-    rep(c(1,0),c(N,M)),
-    cbind(B, diag(M)),
-    cbind(B,-diag(M))
-  )
-  #cat("Problem constructed.",fill=TRUE)
-  model <- list()
-  # minimize \sum t_i
-  model$A <- slam::as.simple_triplet_matrix(A)
-  model$obj <- rep(c(0,1),c(N,M))
-  model$modelsense <- 'min'
-  model$rhs <- c(k,y,y)
-  model$sense <- rep(c("=",">=","<="),c(1,M,M))
-  model$vtype <- rep(c("B","C"),c(N,M))
-  re <- gurobi::gurobi(model)
-  re$model  <- model
-  re$subset <- S[as.logical(round(re$x[seq(N)]))]
   return(re)
 }
 

@@ -1,9 +1,9 @@
-
 # bbsubset
 
 ## What's this for ?
 
-bbsubset is a simple tool for R to selecet a subset of DNA barcodes from the fullset where each conponent is distant enough.
+When you have or create a fullset of DNA barcode, the size is often larger than you want. 
+bbsubset is a simple tool for R to selecet a subset of DNA barcodes from the fullset. to avoid the sequence error. where each conponent is distant enough.
 
 ## Installation
 

@@ -15,7 +15,10 @@ devtools::install_github("tfwis/bbsubset")
 
 ## Usage
 
-### Fullset of DNA barcode
+### Input
+
+The fullset of DNA barcode is needed to be entered in vector class, and One element of a vector is one barcode.
+
 
 
 
@@ -35,17 +38,24 @@ library(slam)
 
 #### Create barcode set by `DNABarcodes`
 
+
+The DNA barcode sets created by `DNABarcodes` meets the requirement for input file descreibed above.
+
 ``` r
 barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)
 ```
 
 #### Select LP solver
 
+`bbsubset` have tolerate to select LP solver via ROI.
+
 ``` r
 library(ROI.plugin.lpsolve)
 ```
 
 #### Extract subset
+
+
 
 ``` r
 myset <- bbsubset::bbsubset(barcodes,12)

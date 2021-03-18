@@ -9,14 +9,14 @@
 ## What’s this for ?
 
 When you have or create a DNA barcode, the size is often larger than you
-want. bbsubset is a simple tool for R to selecet a subset of DNA
+want. `bbsubset` is a simple tool for R to select a subset of DNA
 barcodes from the fullset in terms of avoiding the sequence error.
 
 ## Installation
 
 ### Install the devtools package
 
-To install bbsubset, start by installing the `devtools` package. The
+To install `bbsubset`, start by installing the `devtools` package. The
 best way to do this is from CRAN with:
 
 ``` r
@@ -38,9 +38,8 @@ One element of a vector is one barcode.
 
 ``` r
 head(bbsubset::sample_barcodes)
+#> [1] "GGAGAA" "CAGGAA" "ACCGAA" "CCACAA" "AGGCAA" "GACCAA"
 ```
-
-    ##  [1] "GGAGAA" "CAGGAA" "ACCGAA" "CCACAA" "AGGCAA" "GACCAA"
 
 ## Tutorial
 
@@ -63,6 +62,8 @@ Usage of `DNABarcodes` is
 
 ``` r
 barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)
+#> 1) Creating pool ...  of size 1160
+#> 2) Conway closing...  done
 ```
 
 ### Select LP solver
@@ -78,10 +79,9 @@ library(ROI.plugin.lpsolve)
 ``` r
 myset <- bbsubset::bbsubset(barcodes,12)
 myset$subset
+#>  [1] "CCACAA" "GCGTAA" "TACGCA" "ATGGAG" "ACAAGG" "CTTAGG" "TGCATC" "AAGGTC"
+#>  [9] "GAACTC" "TGTCGT" "CTCTCT" "GGTTCT"
 ```
-
-    ##  [1] "CCACAA" "GCGTAA" "TACGCA" "ATGGAG" "ACAAGG" "CTTAGG" "TGCATC" "AAGGTC"
-    ##  [9] "GAACTC" "TGTCGT" "CTCTCT" "GGTTCT"
 
 ### Validate nucleotide balance
 
@@ -91,13 +91,12 @@ Each Colum show the numebre of each
 
 ``` r
 bbsubset::basecomp(myset$subset)
+#>   1bp 2bp 3bp 4bp 5bp 6bp
+#> A   3   3   3   3   3   3
+#> C   3   3   3   3   3   3
+#> T   3   3   3   3   3   3
+#> G   3   3   3   3   3   3
 ```
-
-    ##   1bp 2bp 3bp 4bp 5bp 6bp
-    ## A   3   3   3   3   3   3
-    ## C   3   3   3   3   3   3
-    ## T   3   3   3   3   3   3
-    ## G   3   3   3   3   3   3
 
 ### Subset extraction with other LP solver
 
@@ -107,10 +106,9 @@ Show the case of using other solver. (e.g. gurobi)
 library(ROI.plugin.gurobi)
 myset <- bbsubset::bbsubset(barcodes,12)
 bbsubset::basecomp(myset$subset)
+#>   1bp 2bp 3bp 4bp 5bp 6bp
+#> A   3   3   3   3   3   3
+#> C   3   3   3   3   3   3
+#> T   3   3   3   3   3   3
+#> G   3   3   3   3   3   3
 ```
-
-    ##   1bp 2bp 3bp 4bp 5bp 6bp
-    ## A   3   3   3   3   3   3
-    ## C   3   3   3   3   3   3
-    ## T   3   3   3   3   3   3
-    ## G   3   3   3   3   3   3

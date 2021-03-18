@@ -21,13 +21,13 @@ knitr::opts_chunk$set(
 ## What's this for ?
 
 When you have or create a DNA barcode, the size is often larger than you want. 
-bbsubset is a simple tool for R to selecet a subset of DNA barcodes from the fullset in terms of avoiding the sequence error.
+`bbsubset` is a simple tool for R to select a subset of DNA barcodes from the fullset in terms of avoiding the sequence error.
 
 ## Installation
 
 ### Install the devtools package
 
-To install bbsubset, start by installing the `devtools` package. The best way to do this is from CRAN with:
+To install `bbsubset`, start by installing the `devtools` package. The best way to do this is from CRAN with:
 
 ```r
 install.packages("devtools")
@@ -45,11 +45,9 @@ devtools::install_github("tfwis/bbsubset")
 
 The fullset of DNA barcode is needed to be entered in vector class, and One element of a vector is one barcode.
 
-```r
+```{r}
 head(bbsubset::sample_barcodes)
 ```
-
-    ##  [1] "GGAGAA" "CAGGAA" "ACCGAA" "CCACAA" "AGGCAA" "GACCAA"
 
 ## Tutorial
 
@@ -69,7 +67,7 @@ library(slam)
 The DNA barcode sets created by `DNABarcodes` meets the requirement for input file descreibed above.  
 Usage of `DNABarcodes` is [here](https://bioconductor.org/packages/release/bioc/vignettes/DNABarcodes/inst/doc/DNABarcodes.html)
 
-``` r
+``` {r}
 barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)
 ```
 
@@ -77,7 +75,7 @@ barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)
 
 `bbsubset` have tolerate to select LP solver via ROI.
 
-``` r
+``` {r}
 library(ROI.plugin.lpsolve)
 ```
 
@@ -85,28 +83,19 @@ library(ROI.plugin.lpsolve)
 
 
 
-``` r
+``` {r}
 myset <- bbsubset::bbsubset(barcodes,12)
 myset$subset
 ```
-
-    ##  [1] "CCACAA" "GCGTAA" "TACGCA" "ATGGAG" "ACAAGG" "CTTAGG" "TGCATC" "AAGGTC"
-    ##  [9] "GAACTC" "TGTCGT" "CTCTCT" "GGTTCT"
 
 ### Validate nucleotide balance
 
 `bbsubset::basecomp()` enables to validate the nucleotide balance of the subset.  
 Each Colum show the numebre of each 
 
-``` r
+``` {r}
 bbsubset::basecomp(myset$subset)
 ```
-
-    ##   1bp 2bp 3bp 4bp 5bp 6bp
-    ## A   3   3   3   3   3   3
-    ## C   3   3   3   3   3   3
-    ## T   3   3   3   3   3   3
-    ## G   3   3   3   3   3   3
 
 ### Subset extraction with other LP solver
 
@@ -116,11 +105,9 @@ Show the case of using other solver. (e.g. gurobi)
 library(ROI.plugin.gurobi)
 myset <- bbsubset::bbsubset(barcodes,12)
 bbsubset::basecomp(myset$subset)
+#>   1bp 2bp 3bp 4bp 5bp 6bp
+#> A   3   3   3   3   3   3
+#> C   3   3   3   3   3   3
+#> T   3   3   3   3   3   3
+#> G   3   3   3   3   3   3
 ```
-
-    ##   1bp 2bp 3bp 4bp 5bp 6bp
-    ## A   3   3   3   3   3   3
-    ## C   3   3   3   3   3   3
-    ## T   3   3   3   3   3   3
-    ## G   3   3   3   3   3   3
-

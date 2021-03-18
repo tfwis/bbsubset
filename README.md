@@ -1,17 +1,19 @@
 
 # bbsubset
 
-abstract
+## What's this for ?
+
+bbsubset is a simple tool for R to selecet a subset of DNA barcodes from the fullset where each conponent is distant enough.
 
 ## Installation
 
-You can install the alpha version of `bbsubset` with:
+You can install `bbsubset` with:
 
 ``` r
 devtools::install_github("tfwis/bbsubset")
 ```
 
-## Example
+## Usage
 
 #### Load packages
 

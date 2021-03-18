@@ -19,10 +19,15 @@ devtools::install_github("tfwis/bbsubset")
 
 The fullset of DNA barcode is needed to be entered in vector class, and One element of a vector is one barcode.
 
+    ##  [1] "CCACAA" "GCGTAA" "TACGCA" "ATGGAG" "ACAAGG" "CTTAGG" "TGCATC" "AAGGTC"
+
+### Parameters
 
 
 
-
+```r
+?bbsubset
+```
 
 ## Tutorial
 
@@ -46,7 +51,7 @@ Usage of `DNABarcodes` is [here](https://bioconductor.org/packages/release/bioc/
 barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)
 ```
 
-#### Select LP solver
+### Select LP solver
 
 `bbsubset` have tolerate to select LP solver via ROI.
 
@@ -54,7 +59,7 @@ barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)
 library(ROI.plugin.lpsolve)
 ```
 
-#### Extract subset
+### Extract subset
 
 
 
@@ -66,7 +71,10 @@ myset$subset
     ##  [1] "CCACAA" "GCGTAA" "TACGCA" "ATGGAG" "ACAAGG" "CTTAGG" "TGCATC" "AAGGTC"
     ##  [9] "GAACTC" "TGTCGT" "CTCTCT" "GGTTCT"
 
-#### Validate nucleotide balance
+### Validate nucleotide balance
+
+`bbsubset::basecomp()` enables to validate the nucleotide balance of the subset.  
+Each Colum show the numebre of each 
 
 ``` r
 bbsubset::basecomp(myset$subset)
@@ -78,9 +86,9 @@ bbsubset::basecomp(myset$subset)
     ## T   3   3   3   3   3   3
     ## G   3   3   3   3   3   3
 
-##### Subset extraction with other LP solver
+### Subset extraction with other LP solver
 
-Show the case of using other solvers. (e.g. gurobi)
+Show the case of using other solver. (e.g. gurobi)
 
 ``` r
 library(ROI.plugin.gurobi)

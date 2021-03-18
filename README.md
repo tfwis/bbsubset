@@ -7,7 +7,17 @@ bbsubset is a simple tool for R to selecet a subset of DNA barcodes from the ful
 
 ## Installation
 
-You can install `bbsubset` with:
+### Install the devtools package
+
+To install bbsubset, start by installing the devtools package. The best way to do this is from CRAN with:
+
+```r
+install.packages("devtools")
+```
+
+### Install bbsubset
+
+Install bbsubset from GitHub with devtools
 
 ``` r
 devtools::install_github("tfwis/bbsubset")

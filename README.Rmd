@@ -41,21 +41,15 @@ Install bbsubset from GitHub with devtools
 devtools::install_github("tfwis/bbsubset")
 ```
 
-## Usage
-
-### Input
+## Input file
 
 The fullset of DNA barcode is needed to be entered in vector class, and One element of a vector is one barcode.
 
-    ##  [1] "CCACAA" "GCGTAA" "TACGCA" "ATGGAG" "ACAAGG" "CTTAGG" "TGCATC" "AAGGTC"
-
-### Parameters
-
-
-
 ```r
-?bbsubset
+head(bbsubset::sample_barcodes)
 ```
+
+    ##  [1] "GGAGAA" "CAGGAA" "ACCGAA" "CCACAA" "AGGCAA" "GACCAA"
 
 ## Tutorial
 

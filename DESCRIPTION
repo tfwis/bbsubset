@@ -18,3 +18,5 @@ Imports:
     slam,
     gurobi
 URL: https://github.com/tfwis/bbsubset
+Depends: 
+    R (>= 2.10)

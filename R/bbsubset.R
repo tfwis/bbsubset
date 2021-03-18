@@ -1,8 +1,3 @@
-# Choose a subset with balanced base composition
-
-code <- diag(4)
-colnames(code) <- c("A","C","T","G")
-
 #' Transform a barcode set to a binary matrix
 #'
 #' @param S barcode set
@@ -60,3 +55,12 @@ basecomp <- function(s) {
   colnames(st) <- paste0(seq_len(ncol(st)),"bp")
   return(st)
 }
+
+#' Sample barcodes
+#'
+#' A dataset containing 76 DNA barcode.Their length are 6 base pair and they are three humming distances apart from each other.
+#' This data set is created by `DNABarcodes`
+#'
+#' @format A vactor with 76 elements
+#'
+"sample_barcodes"

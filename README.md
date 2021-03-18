@@ -15,6 +15,14 @@ devtools::install_github("tfwis/bbsubset")
 
 ## Usage
 
+### Fullset of DNA barcode
+
+
+
+
+
+## Tutorial
+
 #### Load packages
 
 Please confirm that these packages are installed before trying this
@@ -25,18 +33,21 @@ library(ROI)
 library(slam)
 ```
 
-##### Create barcode set by `DNABarcodes`
+#### Create barcode set by `DNABarcodes`
 
 ``` r
 barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)
 ```
 
-#### The bbsubset part
-
-##### Extract subset
+#### Select LP solver
 
 ``` r
 library(ROI.plugin.lpsolve)
+```
+
+#### Extract subset
+
+``` r
 myset <- bbsubset::bbsubset(barcodes,12)
 myset$subset
 ```

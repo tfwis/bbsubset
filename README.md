@@ -39,7 +39,7 @@ library(slam)
 #### Create barcode set by `DNABarcodes`
 
 
-The DNA barcode sets created by `DNABarcodes` meets the requirement for input file descreibed above.　　
+The DNA barcode sets created by `DNABarcodes` meets the requirement for input file descreibed above.  
 Usage of `DNABarcodes` is [here](https://bioconductor.org/packages/release/bioc/vignettes/DNABarcodes/inst/doc/DNABarcodes.html)
 
 ``` r
@@ -66,6 +66,8 @@ myset$subset
     ##  [1] "CCACAA" "GCGTAA" "TACGCA" "ATGGAG" "ACAAGG" "CTTAGG" "TGCATC" "AAGGTC"
     ##  [9] "GAACTC" "TGTCGT" "CTCTCT" "GGTTCT"
 
+#### Validate nucleotide balance
+
 ``` r
 bbsubset::basecomp(myset$subset)
 ```
@@ -76,7 +78,9 @@ bbsubset::basecomp(myset$subset)
     ## T   3   3   3   3   3   3
     ## G   3   3   3   3   3   3
 
-##### Subset extraction performed by `gurobi`
+##### Subset extraction with other LP solver
+
+Show the case of using other solvers. (e.g. gurobi)
 
 ``` r
 library(ROI.plugin.gurobi)

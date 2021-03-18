@@ -39,7 +39,8 @@ library(slam)
 #### Create barcode set by `DNABarcodes`
 
 
-The DNA barcode sets created by `DNABarcodes` meets the requirement for input file descreibed above.
+The DNA barcode sets created by `DNABarcodes` meets the requirement for input file descreibed above.\\
+Usage of `DNABarcodes` is [here](https://bioconductor.org/packages/release/bioc/vignettes/DNABarcodes/inst/doc/DNABarcodes.html)
 
 ``` r
 barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)

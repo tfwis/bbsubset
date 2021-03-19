@@ -15,8 +15,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: 
     ROI,
-    slam,
-    gurobi
+    slam
 URL: https://github.com/tfwis/bbsubset
 Depends: 
     R (>= 2.10)

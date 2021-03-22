@@ -130,3 +130,4 @@ bbsubset::basecomp(myset$subset)
 #> T   3   3   3   3   3   3
 #> G   3   3   3   3   3   3
 ```
+

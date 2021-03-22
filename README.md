@@ -99,11 +99,11 @@ Each column shows the number of nucleotides in each position.
 
 ``` r
 bbsubset::basecomp(myset$subset)
-#>   1bp 2bp 3bp 4bp 5bp 6bp
-#> A   3   3   3   3   3   3
-#> C   3   3   3   3   3   3
-#> T   3   3   3   3   3   3
-#> G   3   3   3   3   3   3
+#>   [,1] [,2] [,3] [,4] [,5] [,6]
+#> A    3    3    3    3    3    3
+#> C    3    3    3    3    3    3
+#> T    3    3    3    3    3    3
+#> G    3    3    3    3    3    3
 ```
 
 ## Option
@@ -115,7 +115,7 @@ please check the API of each solver. In the following code, `lpsolve` is
 used.
 
 ``` r
-myset <- bbsubset::bbsubset(barcodes,5,solver="lpsolve",timeout=10) 
+myset <- bbsubset::bbsubset(barcodes,5,timeout=10) 
 ```
 
 ### Subset extraction with other LP solver

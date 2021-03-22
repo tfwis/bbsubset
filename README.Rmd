@@ -76,7 +76,7 @@ library(slam)
 The DNA barcode sets created by `DNABarcodes` meets the requirement for input file descreibed above.  
 Usage of `DNABarcodes` is [here](https://bioconductor.org/packages/release/bioc/vignettes/DNABarcodes/inst/doc/DNABarcodes.html)
 
-``` {r}
+``` {r, create barcode}
 barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)
 ```
 
@@ -85,13 +85,13 @@ barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)
 `bbsubset` have tolerate to select LP solver via ROI.  
 By default, solver is set to `lpsolve`. So if you want to run `bbsubset` by default, library `ROI.plugin.lpsolve`.
 
-``` {r}
+``` {r, library}
 library(ROI.plugin.lpsolve)
 ```
 
 ### Extract subset
 
-``` {r}
+``` {r, bbsubset}
 myset <- bbsubset::bbsubset(barcodes,12)
 myset$subset
 ```
@@ -101,7 +101,7 @@ myset$subset
 `bbsubset::basecomp()` enables to validate the nucleotide balance of the subset.  
 Each Colum show the numebre of each 
 
-``` {r}
+``` {r basecomp}
 bbsubset::basecomp(myset$subset)
 ```
 
@@ -112,7 +112,7 @@ bbsubset::basecomp(myset$subset)
 
 You can set a timeout. How to set the timeout depends on the solver, please check the API of each solver. In the following code, `lpsolve` is used.
 
-``` {r}
+``` {r, timeout}
 myset <- bbsubset::bbsubset(barcodes,5,solver="lpsolve",timeout=10) 
 ```
 

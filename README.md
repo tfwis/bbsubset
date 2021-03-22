@@ -110,7 +110,12 @@ bbsubset::basecomp(myset$subset)
 
 ### Set timeout
 
+You can set a timeout. How to set the timeout depends on the solver,
+please check the API of each solver. In the following code, `lpsolve` is
+used.
+
 ``` r
+myset <- bbsubset::bbsubset(barcodes,5,solver="lpsolve",timeout=10) 
 ```
 
 ### Subset extraction with other LP solver

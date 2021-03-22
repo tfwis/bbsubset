@@ -17,7 +17,7 @@ matACTG <- function(S) sapply(strsplit(S,""), function(x) code[,x])
 #' @importFrom slam as.simple_triplet_matrix
 #' @export
 #'
-bbsubset <- function(S,k,...) {
+bbsubset <- function(S,k,Solver="lpsolve",...) {
   y <- rep(k*1/4,4*nchar(S[1]))
   N <- length(S)
   M <- length(y)
@@ -39,7 +39,7 @@ bbsubset <- function(S,k,...) {
     ),
     types = rep(c("B","C"),c(N,M))
   )
-  re <- ROI::ROI_solve(model,...)
+  re <- ROI::ROI_solve(model,solver=Solver,..)
   re$model  <- model
   re$subset <- S[as.logical(round(re$solution[seq(N)]))]
   return(re)
@@ -50,11 +50,7 @@ bbsubset <- function(S,k,...) {
 #' @param s barcode subset extracted by bbsubset
 #' @export
 #'
-basecomp <- function(s) {
-  st <- matrix(rowSums(matACTG(s)),nrow=4,dimnames=list(colnames(code)))
-  colnames(st) <- paste0(seq_len(ncol(st)),"bp")
-  return(st)
-}
+basecomp <- function(s) matrix(rowSums(matACTG(s)),nrow=4,dimnames=list(colnames(code)))
 
 #' Sample barcodes
 #'

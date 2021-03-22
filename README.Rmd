@@ -23,6 +23,7 @@ knitr::opts_chunk$set(
 When you have or create a DNA barcode, the size is often larger than you want. 
 `bbsubset` is a simple tool for R to select a subset of DNA barcodes from the fullset in terms of avoiding the sequence error.
 
+
 ## Installation
 
 ### Install the devtools package
@@ -41,6 +42,7 @@ Install bbsubset from GitHub with devtools
 devtools::install_github("tfwis/bbsubset")
 ```
 
+
 ## Input file
 
 The fullset of DNA barcode is needed to be entered in vector class, and One element of a vector is one barcode.
@@ -48,6 +50,14 @@ The fullset of DNA barcode is needed to be entered in vector class, and One elem
 ```{r}
 head(bbsubset::sample_barcodes)
 ```
+
+
+## Wrokflow
+
+**Step1: Preperation of the input file**  
+**Step2: Selecet LP solver**  
+**Step3: Extract subset by `bbsubset`**  
+
 
 ## Tutorial
 
@@ -63,7 +73,6 @@ library(slam)
 
 #### Create barcode set by `DNABarcodes`
 
-
 The DNA barcode sets created by `DNABarcodes` meets the requirement for input file descreibed above.  
 Usage of `DNABarcodes` is [here](https://bioconductor.org/packages/release/bioc/vignettes/DNABarcodes/inst/doc/DNABarcodes.html)
 
@@ -73,15 +82,14 @@ barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)
 
 ### Select LP solver
 
-`bbsubset` have tolerate to select LP solver via ROI.
+`bbsubset` have tolerate to select LP solver via ROI.  
+By default, solver is set to `lpsolve`. So if you want to run `bbsubset` by default, library `ROI.plugin.lpsolve`.
 
 ``` {r}
 library(ROI.plugin.lpsolve)
 ```
 
 ### Extract subset
-
-
 
 ``` {r}
 myset <- bbsubset::bbsubset(barcodes,12)
@@ -97,13 +105,24 @@ Each Colum show the numebre of each
 bbsubset::basecomp(myset$subset)
 ```
 
+
+## Option
+
+### Set timeout
+
+You can set a timeout. How to set the timeout depends on the solver, please check the API of each solver. In the following code, `lpsolve` is used.
+
+```{r}
+myset <- bbsubset::bbsubset(barcodes,5,solver="lpsolve",timeout=10) 
+```
+
 ### Subset extraction with other LP solver
 
 Show the case of using other solver. (e.g. gurobi)
 
 ``` r
 library(ROI.plugin.gurobi)
-myset <- bbsubset::bbsubset(barcodes,12)
+myset <- bbsubset::bbsubset(barcodes,12,Solver="gurobi")
 bbsubset::basecomp(myset$subset)
 #>   1bp 2bp 3bp 4bp 5bp 6bp
 #> A   3   3   3   3   3   3

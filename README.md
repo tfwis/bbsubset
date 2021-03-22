@@ -41,6 +41,12 @@ head(bbsubset::sample_barcodes)
 #> [1] "GGAGAA" "CAGGAA" "ACCGAA" "CCACAA" "AGGCAA" "GACCAA"
 ```
 
+## Wrokflow
+
+**Step1: Preperation of the input file**  
+**Step2: Selecet LP solver**  
+**Step3: Extract subset by `bbsubset`**
+
 ## Tutorial
 
 #### Load packages
@@ -68,7 +74,9 @@ barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)
 
 ### Select LP solver
 
-`bbsubset` have tolerate to select LP solver via ROI.
+`bbsubset` have tolerate to select LP solver via ROI.  
+By default, solver is set to `lpsolve`. So if you want to run `bbsubset`
+by default, library `ROI.plugin.lpsolve`.
 
 ``` r
 library(ROI.plugin.lpsolve)
@@ -98,13 +106,20 @@ bbsubset::basecomp(myset$subset)
 #> G   3   3   3   3   3   3
 ```
 
+## Option
+
+### Set timeout
+
+``` r
+```
+
 ### Subset extraction with other LP solver
 
 Show the case of using other solver. (e.g. gurobi)
 
 ``` r
 library(ROI.plugin.gurobi)
-myset <- bbsubset::bbsubset(barcodes,12)
+myset <- bbsubset::bbsubset(barcodes,12,Solver="gurobi")
 bbsubset::basecomp(myset$subset)
 #>   1bp 2bp 3bp 4bp 5bp 6bp
 #> A   3   3   3   3   3   3

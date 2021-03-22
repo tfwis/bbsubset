@@ -95,7 +95,7 @@ myset$subset
 
 `bbsubset::basecomp()` enables to validate the nucleotide balance of the
 subset.  
-Each Colum show the numebre of each
+Each column shows the number of nucleotides in each position.
 
 ``` r
 bbsubset::basecomp(myset$subset)

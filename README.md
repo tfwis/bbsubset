@@ -27,8 +27,7 @@ devtools::install_github("tfwis/bbsubset")
 ## The workflow
 
 * Step1: Prepere your candidate DNA barcode pool
-* Step2: Choose solver (optional)
-* Step3: Extract subset from the pool by `bbsubset`
+* Step2: Extract the well-balanced subset from the pool
 
 ## Tutorial
 
@@ -39,7 +38,7 @@ Design the 12 DNA barcordes for my custom NGS library that meets the requirement
 * well-balanced nucleotides to avoid sequencing errors
 * 1 error correction: at least having 3 different bases each other)
 
-### Create barcode set by `DNABarcodes`
+### 1. Create barcode set by `DNABarcodes`
 
 [`DNABarcodes`](https://bioconductor.org/packages/release/bioc/vignettes/DNABarcodes/inst/doc/DNABarcodes.html) is
 the great tool for creating error torelant barcode set.
@@ -55,18 +54,7 @@ This procuces the pool of 6 length DNA barcodes
 with 3 hamming distance from each other
 (i.e., 1 error correction is available).
 
-### Choose solver (optional)
-
-`bbsubset` is free to select LP solver via ROI infrastructure.
-
-The default solver is `lpsolve`. If you want to run `bbsubset`
-by default, load `ROI.plugin.lpsolve`.
-
-``` r
-library(ROI.plugin.lpsolve)
-```
-
-### Extract subset
+### 2. Extract the subset
 
 Select well-balanced 12 barcodes from the barcode pool.
 
@@ -111,6 +99,8 @@ https://cran.r-project.org/web/packages/lpSolve/index.html
 
 ### Changing solver
 
+`bbsubset` is free to select LP solver via [ROI](http://roi.r-forge.r-project.org) infrastructure.
+
 If you need more speed for computation,
 you can try the commercial solver like Gurobi.
 
@@ -118,11 +108,11 @@ you can try the commercial solver like Gurobi.
 library(ROI.plugin.gurobi)
 myset <- bbsubset::bbsubset(barcodes,12,solver="gurobi")
 bbsubset::basecomp(myset$subset)
-#>   1bp 2bp 3bp 4bp 5bp 6bp
-#> A   3   3   3   3   3   3
-#> C   3   3   3   3   3   3
-#> T   3   3   3   3   3   3
-#> G   3   3   3   3   3   3
+#>   [,1] [,2] [,3] [,4] [,5] [,6]
+#> A    3    3    3    3    3    3
+#> C    3    3    3    3    3    3
+#> T    3    3    3    3    3    3
+#> G    3    3    3    3    3    3
 ```
 
 See the Gurobi document for the installation and the API reference.

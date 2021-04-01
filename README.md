@@ -26,22 +26,20 @@ devtools::install_github("tfwis/bbsubset")
 
 ## The wrokflow
 
-* Step1: Prepere your input DNA pool
-* Step2: Choose LP solver (optional)
+* Step1: Prepere your candidate DNA barcode pool
+* Step2: Choose solver (optional)
 * Step3: Extract subset from the pool by `bbsubset`
 
 ## Tutorial
 
-#### Load packages
+## The purpose
 
-Please confirm that these packages are installed before trying this tutorial.
+Design the 12 DNA barcordes for my custom NGS library that meets the requirements.
 
-``` r
-library(ROI)
-library(slam)
-```
+* well-balanced nucleotides to avoid sequencing errors
+* 1 error correction: at least having 3 different bases each other)
 
-#### Create barcode set by `DNABarcodes`
+### Create barcode set by `DNABarcodes`
 
 [`DNABarcodes`](https://bioconductor.org/packages/release/bioc/vignettes/DNABarcodes/inst/doc/DNABarcodes.html) is
 the great tool for creating error torelant barcode set.
@@ -57,11 +55,11 @@ This procuces the pool of 6 length DNA barcodes
 with 3 hamming distance from each other
 (i.e., 1 error correction is available).
 
-### Select LP solver (optional)
+### Choose solver (optional)
 
 `bbsubset` is free to select LP solver via ROI infrastructure.
 
-The default solver is lpsolve`. If you want to run `bbsubset`
+The default solver is `lpsolve`. If you want to run `bbsubset`
 by default, load `ROI.plugin.lpsolve`.
 
 ``` r
@@ -96,7 +94,7 @@ This result is perfect.
 
 ## Advanced options
 
-### Setting timeout in LP solve
+### Setting timeout in lpsolve
 
 You can set a timeout to limit the computation time.
 
@@ -111,9 +109,10 @@ myset <- bbsubset::bbsubset(barcodes,5,timeout=10)
 
 https://cran.r-project.org/web/packages/lpSolve/index.html
 
-### Gurobi solver
+### Changing solver
 
-To use commercial solver like gurobi, then.
+If you need more speed for computation,
+you can try the commercial solver like Gurobi.
 
 ``` r
 library(ROI.plugin.gurobi)
@@ -126,6 +125,10 @@ bbsubset::basecomp(myset$subset)
 #> G   3   3   3   3   3   3
 ```
 
-See the Gurobi document for installation and the API reference.
+See the Gurobi document for the installation and the API reference.
 
 https://www.gurobi.com/documentation/
+
+Available solvers in ROI are listed in the R-Forge page.
+
+https://roi.r-forge.r-project.org

@@ -9,7 +9,7 @@ matACTG <- function(S) sapply(strsplit(S,""), function(x) code[,x])
 #'
 #' @param S barcode set
 #' @param k the size of barcode subset to extract
-#' @param Solver LP solver. By default, `lpsolve` is set.
+#' @param solver LP solver. By default, `lpsolve` is set.
 #' @param ... pass to `ROI_solve`
 #'
 #' @importFrom ROI OP
@@ -18,7 +18,7 @@ matACTG <- function(S) sapply(strsplit(S,""), function(x) code[,x])
 #' @importFrom slam as.simple_triplet_matrix
 #' @export
 #'
-bbsubset <- function(S,k,Solver="lpsolve",...) {
+bbsubset <- function(S,k,solver="lpsolve",...) {
   y <- rep(k*1/4,4*nchar(S[1]))
   N <- length(S)
   M <- length(y)
@@ -40,7 +40,8 @@ bbsubset <- function(S,k,Solver="lpsolve",...) {
     ),
     types = rep(c("B","C"),c(N,M))
   )
-  re <- ROI::ROI_solve(model,solver=Solver,...)
+  if (is.null(ROI::ROI_applicable_solvers(model))) library(ROI.plugin.lpsolve)
+  re <- ROI::ROI_solve(model,solver=solver,...)
   re$model  <- model
   re$subset <- S[as.logical(round(re$solution[seq(N)]))]
   return(re)

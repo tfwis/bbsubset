@@ -8,8 +8,8 @@
 
 ## What’s this for ?
 
-Designing *good* custom DNA barcodes and selecting a *good* subset of oligo pool
-in your lab. is a problem of combinatorial optimizations.
+Designing *good* custom DNA barcodes and selecting a *good* subset of
+oligo pool in your laboratory involves a problem of combinatorial optimizations.
 
 This R package `bbsubset` is dedicated for the purpose, and select a subset of DNA sequences
 that are *well-balanced* in terms of nucleosties composition.
@@ -24,7 +24,7 @@ Then run,
 devtools::install_github("tfwis/bbsubset")
 ```
 
-## The wrokflow
+## The workflow
 
 * Step1: Prepere your candidate DNA barcode pool
 * Step2: Choose solver (optional)

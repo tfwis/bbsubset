@@ -9,10 +9,20 @@ matACTG <- function(S) sapply(strsplit(S,""), function(x) code[,x])
 #'
 #' @param S barcode set
 #' @param k the size of barcode subset to extract
-#' @param ... pass to `ROI_solve`
-#' @returns \item{subset}{the oprimal barcode subset} \item{model}{the model
-#' for calculation to obtain optimal barcodes subset}
-#' @example bbsubset(sample_barcodes,k=8)
+#' @param ... pass to `ROI_solve`. Please see the examples below.
+#' @returns \item{subset} {The oprimal barcode subset} \item{model} {The model
+#' for calculation to obtain optimal barcodes subset with \code{ROI_solve()}}
+#' \item{Others} {Please check \code{?ROI::ROI_solve}}
+#' @examples \dontrun{
+#' # a
+#' #bbsubset(sample_barcodes,k=8)
+#'
+#' # Set a timeout
+#' #bbsubset(sample_barcodes,k=5,timeout=10)
+#'
+#' # Use the other LP solver
+#' #bbsubset(sample_barcodes,k=8,solver="gurobi")
+#' }
 #'
 #' @importFrom ROI OP
 #' @importFrom ROI L_constraint

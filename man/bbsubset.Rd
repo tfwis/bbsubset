@@ -21,3 +21,16 @@ for calculation to obtain optimal barcodes subset with \code{ROI_solve()}}
 \description{
 Extract well-balanced subset minimizing abs(error) with LP
 }
+\examples{
+bbsubset(sample_barcodes,k=8)
+
+# Set a timeout
+bbsubset(sample_barcodes,k=5,timeout=10)
+
+# Use the other LP solver
+\dontrun{
+library(ROI.plugin.gurobi)
+bbsubset(sample_barcodes,k=8,solver="gurobi")
+}
+
+}

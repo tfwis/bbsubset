@@ -10,6 +10,9 @@ matACTG <- function(S) sapply(strsplit(S,""), function(x) code[,x])
 #' @param S barcode set
 #' @param k the size of barcode subset to extract
 #' @param ... pass to `ROI_solve`
+#' @returns \item{subset}{the oprimal barcode subset} \item{model}{the model
+#' for calculation to obtain optimal barcodes subset}
+#' @example bbsubset(sample_barcodes,k=8)
 #'
 #' @importFrom ROI OP
 #' @importFrom ROI L_constraint
@@ -51,11 +54,12 @@ bbsubset <- function(S,k,...) {
 #' @param s barcode subset extracted by bbsubset
 #' @export
 #'
-basecomp <- function(s) matrix(rowSums(matACTG(s)),nrow=4,dimnames=list(colnames(code)))
+basecomp <- function(s) {matrix(rowSums(matACTG(s)),nrow=4,dimnames=list(colnames(code)))}
 
 #' Sample barcodes
 #'
-#' A dataset containing 76 DNA barcode.Their length are 6 base pair and they are three humming distances apart from each other.
+#' A dataset containing 76 DNA barcode.Their length are 6 base pair and
+#' they are three humming distances apart from each other.
 #' This data set is created by `DNABarcodes`
 #'
 #' @format A vactor with 76 elements

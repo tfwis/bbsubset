@@ -11,7 +11,8 @@ A vactor with 76 elements
 sample_barcodes
 }
 \description{
-A dataset containing 76 DNA barcode.Their length are 6 base pair and they are three humming distances apart from each other.
+A dataset containing 76 DNA barcode.Their length are 6 base pair and
+they are three humming distances apart from each other.
 This data set is created by \code{DNABarcodes}
 }
 \keyword{datasets}

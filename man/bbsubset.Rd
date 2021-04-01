@@ -13,6 +13,10 @@ bbsubset(S, k, ...)
 
 \item{...}{pass to \code{ROI_solve}}
 }
+\value{
+\item{subset}{the oprimal barcode subset} \item{model}{the model
+for calculation to obtain optimal barcodes subset}
+}
 \description{
 Extract well-balanced subset minimizing abs(error) with LP
 }

@@ -13,22 +13,11 @@ bbsubset(S, k, ...)
 
 \item{...}{pass to \code{ROI_solve}. Please see the examples below.}
 }
+\value{
+\item{subset}{The oprimal barcode subset} \item{model}{The model
+for calculation to obtain optimal barcodes subset with \code{ROI_solve()}}
+\item{Others}{Please check \code{?ROI::ROI_solve}}
+}
 \description{
 Extract well-balanced subset minimizing abs(error) with LP
-}
-\examples{
-\dontrun{
-# a
-
-bbsubset(sample_barcodes,k=8)
-
-# Set a timeout
-
-bbsubset(sample_barcodes,k=5,timeout=10)
-
-# Use the other LP solver
-
-bbsubset(sample_barcodes,k=8,solver="gurobi")
-}
-
 }

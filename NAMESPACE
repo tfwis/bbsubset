@@ -3,6 +3,7 @@
 export(basecomp)
 export(bbsubset)
 export(matACTG)
+import(ROI.plugin.lpsolve)
 importFrom(ROI,L_constraint)
 importFrom(ROI,OP)
 importFrom(ROI,ROI_solve)

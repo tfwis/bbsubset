@@ -15,7 +15,9 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: 
     ROI,
-    slam
+    slam,
+    lpSolveAPI,
+    ROI.plugin.lpsolve
 URL: https://github.com/tfwis/bbsubset
 Depends: 
     R (>= 2.10)

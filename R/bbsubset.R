@@ -15,6 +15,7 @@ matACTG <- function(S) sapply(strsplit(S,""), function(x) code[,x])
 #' @importFrom ROI L_constraint
 #' @importFrom ROI ROI_solve
 #' @importFrom slam as.simple_triplet_matrix
+#' @import ROI.plugin.lpsolve
 #' @export
 #'
 bbsubset <- function(S,k,...) {
@@ -39,7 +40,6 @@ bbsubset <- function(S,k,...) {
     ),
     types = rep(c("B","C"),c(N,M))
   )
-  if (is.null(ROI::ROI_applicable_solvers(model))) library(ROI.plugin.lpsolve)
   re <- ROI::ROI_solve(model,...)
   re$model  <- model
   re$subset <- S[as.logical(round(re$solution[seq(N)]))]

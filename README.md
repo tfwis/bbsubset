@@ -8,51 +8,33 @@
 
 ## What’s this for ?
 
-When you have or create a DNA barcode, the size is often larger than you
-want. `bbsubset` is a simple tool for R to select a subset of DNA
-barcodes from the fullset in terms of avoiding the sequence error.
+Designing *good* custom DNA barcodes and selecting a *good* subset of oligo pool
+in your lab. is a problem of combinatorial optimizations.
+
+This R package `bbsubset` is dedicated for the purpose, and select a subset of DNA sequences
+that are *well-balanced* in terms of nucleosties composition.
 
 ## Installation
 
-### Install the devtools package
+`install.packages("devtools")` if you haven't installed it.
 
-To install `bbsubset`, start by installing the `devtools` package. The
-best way to do this is from CRAN with:
-
-``` r
-install.packages("devtools")
-```
-
-### Install bbsubset
-
-Install bbsubset from GitHub with devtools
+Then run,
 
 ``` r
 devtools::install_github("tfwis/bbsubset")
 ```
 
-## Input file
+## The wrokflow
 
-The fullset of DNA barcode is needed to be entered in vector class, and
-One element of a vector is one barcode.
-
-``` r
-head(bbsubset::sample_barcodes)
-#> [1] "GGAGAA" "CAGGAA" "ACCGAA" "CCACAA" "AGGCAA" "GACCAA"
-```
-
-## Wrokflow
-
-**Step1: Preperation of the input file**  
-**Step2: Selecet LP solver**  
-**Step3: Extract subset by `bbsubset`**
+* Step1: Prepere your input DNA pool
+* Step2: Choose LP solver (optional)
+* Step3: Extract subset from the pool by `bbsubset`
 
 ## Tutorial
 
 #### Load packages
 
-Please confirm that these packages are installed before trying this
-example.
+Please confirm that these packages are installed before trying this tutorial.
 
 ``` r
 library(ROI)
@@ -61,28 +43,34 @@ library(slam)
 
 #### Create barcode set by `DNABarcodes`
 
-The DNA barcode sets created by `DNABarcodes` meets the requirement for
-input file descreibed above.  
-Usage of `DNABarcodes` is
-[here](https://bioconductor.org/packages/release/bioc/vignettes/DNABarcodes/inst/doc/DNABarcodes.html)
+[`DNABarcodes`](https://bioconductor.org/packages/release/bioc/vignettes/DNABarcodes/inst/doc/DNABarcodes.html) is
+the great tool for creating error torelant barcode set.
+
+Let us use this as a starting material of DNA barcode pool.
 
 ``` r
 barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)
 #> 1) Creating pool ...  of size 1160
 #> 2) Conway closing...  done
 ```
+This procuces the pool of 6 length DNA barcodes
+with 3 hamming distance from each other
+(i.e., 1 error correction is available).
 
-### Select LP solver
+### Select LP solver (optional)
 
-`bbsubset` have tolerate to select LP solver via ROI.  
-By default, solver is set to `lpsolve`. So if you want to run `bbsubset`
-by default, library `ROI.plugin.lpsolve`.
+`bbsubset` is free to select LP solver via ROI infrastructure.
+
+The default solver is lpsolve`. If you want to run `bbsubset`
+by default, load `ROI.plugin.lpsolve`.
 
 ``` r
 library(ROI.plugin.lpsolve)
 ```
 
 ### Extract subset
+
+Select well-balanced 12 barcodes from the barcode pool.
 
 ``` r
 myset <- bbsubset::bbsubset(barcodes,12)
@@ -93,9 +81,7 @@ myset$subset
 
 ### Validate nucleotide balance
 
-`bbsubset::basecomp()` enables to validate the nucleotide balance of the
-subset.  
-Each column shows the number of nucleotides in each position.
+`basecomp` to show nucleotides numbers at each position (1-6).
 
 ``` r
 bbsubset::basecomp(myset$subset)
@@ -106,25 +92,32 @@ bbsubset::basecomp(myset$subset)
 #> G    3    3    3    3    3    3
 ```
 
-## Option
+This result is perfect.
 
-### Set timeout
+## Advanced options
 
-You can set a timeout. How to set the timeout depends on the solver,
-please check the API of each solver. In the following code, `lpsolve` is
-used.
+### Setting timeout in LP solve
+
+You can set a timeout to limit the computation time.
+
+Since the name of the option is depend on the selected solver,
+please see the reference manuals. 
+
+The following example set limtits up to 10 seconds in `lpsolve`.
 
 ``` r
 myset <- bbsubset::bbsubset(barcodes,5,timeout=10) 
 ```
 
-### Subset extraction with other LP solver
+https://cran.r-project.org/web/packages/lpSolve/index.html
 
-Show the case of using other solver. (e.g. gurobi)
+### Gurobi solver
+
+To use commercial solver like gurobi, then.
 
 ``` r
 library(ROI.plugin.gurobi)
-myset <- bbsubset::bbsubset(barcodes,12,Solver="gurobi")
+myset <- bbsubset::bbsubset(barcodes,12,solver="gurobi")
 bbsubset::basecomp(myset$subset)
 #>   1bp 2bp 3bp 4bp 5bp 6bp
 #> A   3   3   3   3   3   3
@@ -132,3 +125,7 @@ bbsubset::basecomp(myset$subset)
 #> T   3   3   3   3   3   3
 #> G   3   3   3   3   3   3
 ```
+
+See the Gurobi document for installation and the API reference.
+
+https://www.gurobi.com/documentation/

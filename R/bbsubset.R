@@ -22,8 +22,7 @@ matACTG <- function(S) sapply(strsplit(S,""), function(x) code[,x])
 #' # Use the other LP solver
 #' \dontrun{
 #' library(ROI.plugin.gurobi)
-#' bbsubset(sample_barcodes,k=8,solver="gurobi")
-#' }
+#' bbsubset(sample_barcodes,k=8,solver="gurobi")}
 #'
 #' @importFrom ROI OP
 #' @importFrom ROI L_constraint

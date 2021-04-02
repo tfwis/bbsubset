@@ -31,4 +31,5 @@ bbsubset(sample_barcodes,k=5,timeout=10)
 \dontrun{
 library(ROI.plugin.gurobi)
 bbsubset(sample_barcodes,k=8,solver="gurobi")}
+
 }

@@ -1,3 +1,6 @@
 .Rproj.user
-bbsubset.Rporj
+.Rbuildignore
 .Rhistory
+.DS_Store
+bbsubset.Rporj
+README.Rmd

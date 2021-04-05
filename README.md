@@ -8,11 +8,11 @@
 
 ## What’s this for ?
 
-Designing *good* custom DNA barcodes and selecting a *good* subset of
+Designing *good* custom DNA barcodes and selecting a *good* subset from
 oligo pool in your laboratory involves a problem of combinatorial optimizations.
 
 This R package `bbsubset` is dedicated for the purpose, and select a subset of DNA sequences
-that are *well-balanced* in terms of nucleosties composition.
+that are *well-balanced* in terms of nucleotides composition.
 
 ## Installation
 
@@ -26,7 +26,7 @@ devtools::install_github("tfwis/bbsubset")
 
 ## The workflow
 
-* Step1: Prepere your candidate DNA barcode pool
+* Step1: Prepare your candidate DNA barcode pool
 * Step2: Extract the well-balanced subset from the pool
 
 ## Tutorial
@@ -36,7 +36,7 @@ devtools::install_github("tfwis/bbsubset")
 Design the 12 DNA barcordes for my custom NGS library that meets the requirements.
 
 * well-balanced nucleotides to avoid sequencing errors
-* 1 error correction: at least having 3 different bases each other)
+* 1 error correction: at least having 3 different bases each other
 
 ### 1. Create barcode set by `DNABarcodes`
 
@@ -89,7 +89,7 @@ You can set a timeout to limit the computation time.
 Since the name of the option is depend on the selected solver,
 please see the reference manuals. 
 
-The following example set limtits up to 10 seconds in `lpsolve`.
+The following example set limits to 10 seconds in `lpsolve`.
 
 ``` r
 myset <- bbsubset::bbsubset(barcodes,5,timeout=10) 

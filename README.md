@@ -50,7 +50,7 @@ barcodes <- DNABarcodes::create.dnabarcodes(n=6, dist=3)
 #> 1) Creating pool ...  of size 1160
 #> 2) Conway closing...  done
 ```
-This procuces the pool of 6 length DNA barcodes
+This produces the pool of 6 length DNA barcodes
 with 3 hamming distance from each other
 (i.e., 1 error correction is available).
 
@@ -84,7 +84,7 @@ This result is perfect.
 
 ### Setting timeout in lpsolve
 
-You can set a timeout to limit the computation time.
+You can set a timeout to limit the computational time.
 
 Since the name of the option is depend on the selected solver,
 please see the reference manuals. 

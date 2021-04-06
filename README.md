@@ -41,7 +41,7 @@ Design the 12 DNA barcordes for my custom NGS library that meets the requirement
 ### 1. Create barcode set by `DNABarcodes`
 
 [`DNABarcodes`](https://bioconductor.org/packages/release/bioc/vignettes/DNABarcodes/inst/doc/DNABarcodes.html) is
-the great tool for creating error torelant barcode set.
+the great tool for creating error tolerant barcode set.
 
 Let us use this as a starting material of DNA barcode pool.
 
